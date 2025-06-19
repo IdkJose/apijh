@@ -19,6 +19,7 @@
   "homepage": "https://github.com/SaidNa14-02/api#readme",
   "description": "",
   "dependencies": {
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "mongodb": "^6.17.0"
   }
 }
