@@ -2,7 +2,7 @@ require("dotenv").config();
 let express = require('express');
 let app = express();
 let tareasRoutes = require('./routes/tareas');
-let mongose = require("mongose")
+let mongose = require("mongoose")
 
 mongose 
     .connect(process.env.MONGO_URI)

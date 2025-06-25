@@ -1,18 +1,21 @@
-let tareas = [];
+const Tarea = require('../model/Tarea');
 
-exports.getTareas = (req, res) => {
-    console.log(tareas.length);
+exports.getTareas = async (req, res) => {
+    const tareas = await Tarea.find();
+    console.log('El numero de tareas es ${tareas.length}');
     res.json(tareas);
 };
 
-exports.addTarea = (req, res) => {
-    let { nombre, completed } = req.body;
-    let nuevo = { id: Date.now(), nombre, completed };
-    tareas.push(nuevo);
+exports.addTarea = async(req, res) => {
+    let { nombre, descripcion, completed } = req.body;
+    let nuevo = new Tarea({ id: Date.now(), nombre, descripcion, completed });
+    await nuevo.save();
+    console.log('Se agregaron nuevas tareas')
     res.status(201).json(nuevo);
 };
 
 exports.deleteTarea = (req, res) => {
+    //finByIdAndDelete
     let id = Number(req.params.id);
     let tareaExistente = tareas.find((t) => t.id === id);
     if (!tareaExistente) {
